@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
+    <title>日期选择Demo</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .datepicker {
+            border: 1px solid #ccc;
+            padding: 2px;
+            line-height: 24px;
+        }
+        .datepicker:focus {
+            outline: none;
+            border: 1px solid #1e93ec;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" data-type="datepicker" class="datepicker" value="2019-03-06">
+
+    <input type="text" data-type="datepicker" class="datepicker" value="20xx06">
+
+    <input type="text" data-type="datepicker" class="datepicker">
+    <p>&nbsp;</p>
+    <input type="text" data-type="datepicker" class="datepicker">
+    <p>&nbsp;</p>
+    <input type="text" data-type="datepicker" class="datepicker">
+
+    <input type="text" data-type="datepicker">
+</body>
+<script src="./date.js"></script>
+</html>

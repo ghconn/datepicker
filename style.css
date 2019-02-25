@@ -1,0 +1,76 @@
+﻿.ui-datepicker-wrap{
+    width: 182px;
+    font-size: 16px;
+    color: #666666;
+    box-shadow: 2px 2px 8px 2px rgba(128, 128, 128, 0.3);
+    display: none;
+    background: fff;
+    position: absolute;
+}
+.ui-datepicker-head{
+    padding: 0 16px;
+    height: 32px;
+    line-height: 32px;
+    background: #f0f0f0;
+    text-align: center;
+    border-bottom: 1px solid #cccccc;
+    font-weight: bold;
+}
+.ui-datepicker-head .ui-datepicker-btn{
+    color: #1e93ec;
+    font-family: serif;
+    font-size: 20px;
+    width: 20px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+}
+.ui-datepicker-head .ui-datepicker-prev-btn{
+    float: left;
+}
+.ui-datepicker-head .ui-datepicker-next-btn{
+    float: right;
+}
+.ui-datepicker-body{
+    height: 171px;
+}
+.ui-datepicker-wrap table{
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    border-collapse: collapse;
+}
+.ui-datepicker-wrap th,.ui-datepicker-wrap td{
+    height: 20px;
+    text-align: center;
+}
+.ui-datepicker-wrap th{
+    font-size: 12px;
+    height: 28px;
+    line-height: 28px;
+}
+.ui-datepicker-wrap td{
+    border: 1px solid #f0f0f0;
+    font-size: 10px;
+    width: 14%;
+    cursor: pointer;
+}
+.ui-datepicker-wrap td.prev-month,.ui-datepicker-wrap td.next-month{
+    color: #cccccc;
+}
+.ui-datepicker-wrap td:hover{
+    background: rgba(30, 147, 236, 0.8);
+    color: white;
+}
+.ui-monthpicker tr{
+    height: 40px;
+    line-height: 40px;
+}
+.date-checked .day-checked{
+    border: 2px solid #1e93ec;
+}
+.ui-monthpicker{
+    display: none;
+}
