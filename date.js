@@ -101,7 +101,7 @@ var datepicker = /** @class */ (function () {
         datepanel.className = "date-checked";
         var datethead = "<thead><tr><th>日</th><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th></tr></thead>";
         this.tbody = document.createElement("tbody");
-        //this.rendertbody(this._year, this._month);
+        //this.rendertbody(this._year, this._month)
         datepanel.innerHTML = datethead;
         datepanel.appendChild(this.tbody);
         var monthpanel = document.createElement("table");
@@ -256,6 +256,7 @@ var datepicker = /** @class */ (function () {
     };
     datepicker.prototype.show = function () {
         this.wraper.style.display = 'block';
+        !this.datepanelisvisible() && this.toggleMonthOrDate(this._month);
         this.spanYearMonth.innerText = this._year + "-" + this._month;
         this.rendertbody(this._year, this._month);
     };

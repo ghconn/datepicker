@@ -282,6 +282,7 @@ class datepicker{
 
    show(){      
       this.wraper.style.display = 'block'
+      !this.datepanelisvisible() && this.toggleMonthOrDate(this._month)
       this.spanYearMonth.innerText = this._year + "-" + this._month
       this.rendertbody(this._year, this._month)
    }
