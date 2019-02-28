@@ -49,21 +49,7 @@ class datepicker{
    }
 
    private init(){
-      this._value = this.host.value
-      var reg = new RegExp(/^(\d{4})-(\d{1,2})-(\d{1,2})$/)
-      if(reg.test(this._value)){
-         this._year = parseInt(RegExp.$1)
-         this._month = parseInt(RegExp.$2)
-         this._day = parseInt(RegExp.$3)
-         this._weekday = new Date(this._year, this._month, this._day).getDay()
-      }
-      else{
-         var now = new Date()
-         this._year = now.getFullYear()
-         this._month = now.getMonth() + 1//getMonth()取值为0-11表示1-12月
-         this._day = now.getDate()
-         this._weekday = now.getDay()
-      }
+      //
 
       this.render()
    }
@@ -268,7 +254,7 @@ class datepicker{
             this._month = spanMonth + 1
          }
          this._day = parseInt(td.innerText)
-         this._weekday = new Date(this._year, this._month, this._day).getDay()
+         this._weekday = new Date(this._year, this._month - 1, this._day).getDay()
          this._value = this._year + '-' + this._month + '-' + this._day
 
          this.host.value = this._value
@@ -280,7 +266,25 @@ class datepicker{
       }
    }
 
-   show(){      
+   show(){
+      this._value = this.host.value
+      var reg = new RegExp(/^(\d{4})(-|\/)(\d{1,2})\2(\d{1,2})$/)
+      if(reg.test(this._value)){
+         this._year = parseInt(RegExp.$1)
+         this._month = parseInt(RegExp.$3)
+         this._day = parseInt(RegExp.$4)
+         var d = new Date(this._year, this._month - 1, this._day)
+         if(d.getFullYear() === this._year && d.getMonth() + 1 === this._month && d.getDate() === this._day){
+            this._weekday = new Date(this._year, this._month - 1, this._day).getDay()
+         }
+         else{
+            this.picktoday()
+         }
+      }
+      else{
+         this.picktoday()
+      }
+
       this.wraper.style.display = 'block'
       !this.datepanelisvisible() && this.toggleMonthOrDate(this._month)
       this.spanYearMonth.innerText = this._year + "-" + this._month
@@ -293,6 +297,15 @@ class datepicker{
 
    toggle(){
       this.wraper.style.display === 'block' ? this.hide() : this.show()
+   }
+
+   picktoday(){
+      var now = new Date()
+      this._year = now.getFullYear()
+      this._month = now.getMonth() + 1//getMonth()取值为0-11表示1-12月
+      this._day = now.getDate()
+      this._weekday = now.getDay()
+      this._value = this._year + '-' + this._month + '-' + this._day
    }
 }
 new datepickerInitor("datepicker")

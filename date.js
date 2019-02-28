@@ -57,21 +57,7 @@ var datepicker = /** @class */ (function () {
         configurable: true
     });
     datepicker.prototype.init = function () {
-        this._value = this.host.value;
-        var reg = new RegExp(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
-        if (reg.test(this._value)) {
-            this._year = parseInt(RegExp.$1);
-            this._month = parseInt(RegExp.$2);
-            this._day = parseInt(RegExp.$3);
-            this._weekday = new Date(this._year, this._month, this._day).getDay();
-        }
-        else {
-            var now = new Date();
-            this._year = now.getFullYear();
-            this._month = now.getMonth() + 1; //getMonth()取值为0-11表示1-12月
-            this._day = now.getDate();
-            this._weekday = now.getDay();
-        }
+        //
         this.render();
     };
     datepicker.prototype.render = function () {
@@ -244,7 +230,7 @@ var datepicker = /** @class */ (function () {
                 this._month = spanMonth + 1;
             }
             this._day = parseInt(td.innerText);
-            this._weekday = new Date(this._year, this._month, this._day).getDay();
+            this._weekday = new Date(this._year, this._month - 1, this._day).getDay();
             this._value = this._year + '-' + this._month + '-' + this._day;
             this.host.value = this._value;
             this.hide();
@@ -255,6 +241,23 @@ var datepicker = /** @class */ (function () {
         }
     };
     datepicker.prototype.show = function () {
+        this._value = this.host.value;
+        var reg = new RegExp(/^(\d{4})(-|\/)(\d{1,2})\2(\d{1,2})$/);
+        if (reg.test(this._value)) {
+            this._year = parseInt(RegExp.$1);
+            this._month = parseInt(RegExp.$3);
+            this._day = parseInt(RegExp.$4);
+            var d = new Date(this._year, this._month - 1, this._day);
+            if (d.getFullYear() === this._year && d.getMonth() + 1 === this._month && d.getDate() === this._day) {
+                this._weekday = new Date(this._year, this._month - 1, this._day).getDay();
+            }
+            else {
+                this.picktoday();
+            }
+        }
+        else {
+            this.picktoday();
+        }
         this.wraper.style.display = 'block';
         !this.datepanelisvisible() && this.toggleMonthOrDate(this._month);
         this.spanYearMonth.innerText = this._year + "-" + this._month;
@@ -265,6 +268,14 @@ var datepicker = /** @class */ (function () {
     };
     datepicker.prototype.toggle = function () {
         this.wraper.style.display === 'block' ? this.hide() : this.show();
+    };
+    datepicker.prototype.picktoday = function () {
+        var now = new Date();
+        this._year = now.getFullYear();
+        this._month = now.getMonth() + 1; //getMonth()取值为0-11表示1-12月
+        this._day = now.getDate();
+        this._weekday = now.getDay();
+        this._value = this._year + '-' + this._month + '-' + this._day;
     };
     return datepicker;
 }());
