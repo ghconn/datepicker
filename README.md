@@ -1,6 +1,5 @@
 # datepicker
-
-日期选择组件简单实现(typescript)
+日期选择组件简单实现
 
 引用style.css并在文档末尾引用date.js，input控件设置data-type="datepicker"，index.html为使用示例
 
