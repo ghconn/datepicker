@@ -6,3 +6,5 @@ typescript简单实现日期选择组件
 ![演示](https://github.com/ghconn/datepicker/blob/master/1.png)
 
 ![演示](https://github.com/ghconn/datepicker/blob/master/2.png)
+
+[sample](https://luck-y.rthe.net/datepicker/module.html)
